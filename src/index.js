@@ -1,17 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import App from './components/App';
+import reducers from './reducers';
 
+
+//we should create a store and should give that store reference to provider
+//provider gives required access to store for any component 
+//so if component wants to get props from store it should implement connect function to connect with provider and get required props from the store
+//provider lies on the top of the application after that app will lies
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <Provider store = {createStore(reducers)}>
+        <App />
+    </Provider>,
+    document.querySelector('#root')
 );
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
